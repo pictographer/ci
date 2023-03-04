@@ -21,8 +21,7 @@ jobs:
     - name: Date
       run: date > version
     - name: Version
-      run: echo ${GITHUB_REF} >> version
-      run: cat version
+      run: echo ${GITHUB_REF} >> version; cat version
     - name: Build
       run: cargo build --verbose
     - name: Run without arguments
