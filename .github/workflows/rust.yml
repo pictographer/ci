@@ -23,7 +23,12 @@ jobs:
     - name: Version
       run: echo ${GITHUB_REF} >> version; cat version
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --release --verbose
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: ci
+        path: ./target/release/ci
     - name: Run without arguments
       run: cargo run
     - name: Run tests

@@ -3,8 +3,8 @@ use std::include_str;
 fn main() {
     println!("Hello, world!");
     println!(
-        "{}",
+        "version from build env: {}",
         option_env!("GITHUB_REF").unwrap_or("GITHUB_REF unset")
     );
-    println!("version: {}", include_str!("../version"));
+    println!("version from file: {}", include_str!("../version"));
 }
