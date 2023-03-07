@@ -24,12 +24,14 @@ jobs:
       run: echo ${GITHUB_REF} >> version; cat version
     - name: Build
       run: cargo build --release --verbose
+    - name: Inspect
+      run: file ./target/release/ci
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
         name: ci
         path: ./target/release/ci
-    - name: Run without arguments
-      run: cargo run
+    - name: Run
+      run: ./target/release/ci
     - name: Run tests
       run: cargo test --verbose -- --nocapture
