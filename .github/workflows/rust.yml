@@ -30,6 +30,6 @@ jobs:
         name: ci
         path: ./target/release/ci
     - name: Run without arguments
-      run: cargo run
+      run: ./target/release/ci
     - name: Run tests
       run: cargo test --verbose -- --nocapture
