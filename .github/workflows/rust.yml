@@ -28,12 +28,13 @@ jobs:
       run: cargo build --release --verbose
     - name: Inspect
       run: file ./target/release/ci
+    - name: Run
+      run: ./target/release/ci
+    - name: Run tests
+      run: cargo test --verbose -- --nocapture
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
         name: ci
         path: ./target/release/ci
-    - name: Run
-      run: ./target/release/ci
-    - name: Run tests
-      run: cargo test --verbose -- --nocapture
+        retention-days: 90
