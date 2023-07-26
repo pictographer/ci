@@ -38,3 +38,15 @@ jobs:
         name: ci
         path: ./target/release/ci
         retention-days: 90
+    - name: S1
+      run: mkdir d
+    - name: S2
+      run: |
+        cd d
+	echo derp > derp.html
+	cd ..
+    - name: S3
+      uses: actions/upload-artifact@v3
+      with:
+        name: assets-for-download
+	path: d
