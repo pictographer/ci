@@ -1,7 +1,7 @@
 use std::include_str;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, new world!");
     println!(
         "version from build env: {}",
         option_env!("GITHUB_REF").unwrap_or("GITHUB_REF unset")
