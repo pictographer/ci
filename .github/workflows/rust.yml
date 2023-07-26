@@ -3,8 +3,6 @@ name: Rust
 on:
   push:
     branches: [ "main" ]
-    tags:
-     - 'v*.*.*'
   pull_request:
     branches: [ "main" ]
 
@@ -37,4 +35,14 @@ jobs:
       with:
         name: ci
         path: ./target/release/ci
+        retention-days: 90
+    - name: S1
+      run: mkdir d
+    - name: S2
+      run: echo derp > d/derp.html
+    - name: S3
+      uses: actions/upload-artifact@v3
+      with:
+        name: di
+        path: d
         retention-days: 90
