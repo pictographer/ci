@@ -45,5 +45,6 @@ jobs:
     - name: S3
       uses: actions/upload-artifact@v3
       with:
-        name: problemchild
-	path: d
+        name: di
+        path: d
+        retention-days: 90
