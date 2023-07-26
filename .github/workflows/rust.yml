@@ -41,10 +41,7 @@ jobs:
     - name: S1
       run: mkdir d
     - name: S2
-      run: |
-        cd d
-	echo derp > derp.html
-	cd ..
+      run: echo derp > d/derp.html
     - name: S3
       uses: actions/upload-artifact@v3
       with:
