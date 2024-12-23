@@ -1,38 +1,25 @@
-name: Rust
+name: Cargo Build & Test
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
-env:
+env: 
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
+  build_and_test:
+    name: Rust project - latest
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+          - beta
+          - nightly
     steps:
-    - uses: actions/checkout@v3
-    - name: Date
-      run: date > version
-    - name: Env
-      run: env
-    - name: Version
-      run: echo ${GITHUB_REF} >> version; cat version
-    - name: Build
-      run: cargo build --release --verbose
-    - name: Inspect
-      run: file ./target/release/ci
-    - name: Run
-      run: ./target/release/ci
-    - name: Run tests
-      run: cargo test --verbose -- --nocapture
-    - name: Upload
-      uses: actions/upload-artifact@v3
-      with:
-        name: ci
-        path: ./target/release/ci
-        retention-days: 90
+      - uses: actions/checkout@v4
+      - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: cargo build --verbose
+      - run: cargo test --verbose
+  
